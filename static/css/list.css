@@ -1,0 +1,184 @@
+
+
+.main {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: calc(100% - 65px);
+}
+
+.main>div {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+    overflow: hidden;
+}
+
+.button-create h3 {
+    float: left;
+}
+
+.button-create {
+    max-height: 20px;
+}
+
+.parent-div-new {
+    padding-bottom: 60px;
+}
+
+.parent-div {
+    height: calc(100% - 60px);
+    overflow-y: auto;
+    clear: both;
+    margin-top: 20px;
+}
+
+.view_item {
+    cursor: pointer;
+    border-radius: 20px;
+    min-height: 100px;
+    padding: 0 !important;
+}
+
+.view_item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.view_item .icon {
+    float: left;
+    margin-right: 16px;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.view_item div.info {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.view_item div.info>div {
+    display: flex;
+    align-items: center;
+}
+
+.view_item div.block,
+.view_item div.block2 {
+    float: left;
+    margin-left: 20px;
+    display: block;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: auto;
+    padding-right: 10px;
+    float: right;
+}
+
+.actions div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.actions div:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.delete-btn {
+    float: left;
+}
+
+.btn-new {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    height: 100px;
+    padding-right: 60px;
+    display: flex;
+    align-items: baseline;
+    justify-content: end;
+}
+
+.btn-new>button {
+    width: 120px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header, .navbar {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+
+@media (max-width: 500px) {
+
+    .view_item{
+        display: block !important;
+        height: auto;
+        padding: 10px;
+    }
+
+    .view_item div.info {
+        display: flex;
+        height: 100%;
+        align-items: center;
+    }
+
+    .view_item div.info>div {
+        display: block;
+        align-items: normal;
+    }
+
+    .view_item div.info>div>.block {
+        margin-left: 0;
+    }
+
+    .view_item .icon {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-new {
+        padding-right: 25px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .view_item div.info>div>.block2 {
+        display: none;
+    }
+}
+
+@media (max-height: 700px) {
+    .main {
+        height: calc(100% - 50px);
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .btn-new {
+        height: 80px;
+    }
+
+    .parent-div {
+        height: calc(100% - 40px);
+    }
+
+    .parent-div-new {
+        padding-bottom: 45px;
+    }
+
+    .button-create {
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+}

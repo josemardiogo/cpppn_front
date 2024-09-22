@@ -1,0 +1,123 @@
+<link rel="stylesheet" href="/static/css/dashboard.css">
+
+
+<div class="window">
+
+    <div id="bg-black"></div>
+   
+    <div class="dashboard d-show">
+
+        <div class="p-2 d-flex align-items-center aside-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="picture rounded-circle"></div>
+                <div class="fs-4"><strong>CPPPN</strong></div>
+            </div>
+        </div>
+   
+        <nav class="nav-menu">
+            <ul class="ul-nav">
+
+                <li class="li-li-nav active" show="home">
+                    <i class="bi bi-house i-menu"></i>
+                    Início
+                </li>
+
+                <li class="li-nav">
+                    <div class="li-nav-header">
+                        <div>
+                            <i class="bi bi-people"></i>
+                            Associados
+                        </div>
+                        <i class="bi bi-chevron-left left-icon"></i>
+                    </div>
+
+                    <ul class="ul-ul-nav">
+                        <li class="li-li-nav" show="associates">
+                            <i class="bi bi-list-columns"></i>
+                            Ver Associados
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+
+
+    </div>
+
+
+    <div class="chat-header-container">
+
+        <div class="chat-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-dark btn-menu d-flex justify-content-center align-items-center">
+                    <span class="d-flex justify-content-center align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-list"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                        </svg>
+                    </span>
+                </button>
+                <span class="link"></span>
+            </div>
+           
+        </div>
+
+        <div class="chat-container">
+
+            <div class="show-content">
+                
+
+            </div>
+
+            <div class="footer">
+                <strong>Copywrite &copy; 2024</strong>
+                <strong>Version 1.0.0</strong>
+            </div>
+
+
+            <div aria-live="polite" aria-atomic="true" class="container chat-toast">
+                <div class="toast-container position-absolute pt-1 px-3 pb-3 top-0 end-0" id="toastPlacement"
+                    data-original-class="toast-container position-absolute p-3">
+                    <div class="toast" id="notification-toast" data-bs-autohide="false">
+
+                        <div class="toast-header">
+
+                            <strong class="me-auto">
+                                <h5>Nova conversa</h1>
+                            </strong>
+
+                        </div>
+
+                        <div class="toast-body">
+                            <ul class="users-list dropdown-menu d-block position-static mx-0 border-0 shadow w-220px">
+
+                                <li>
+                                    <div>
+                                        <div class="bd-example-snippet bd-code-snippet">
+                                            <div class="bd-example d-flex justify-content-center mb-2">
+
+                                                <div class="spinner-border text-dark" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/js/dashboard.js"></script>

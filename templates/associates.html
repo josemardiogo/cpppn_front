@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="/static/css/list.css">
+
+<div class="main container mt-5">
+    <div class="container rounded-4">
+
+        <div class="container btn-new">
+
+            <button id="button-new-tran" type="button" class="btn btn-success text-white rounded-4 p-2"
+                title="Novo transporte">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-plus-circle me-2" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                </svg>
+
+                Novo
+
+            </button>
+
+        </div>
+
+        <div class="parent-div parent-div-new list-associetes">
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="ModalUser" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel">Novo Associado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-0">
+                <form id="formSaveUser">
+                    <fieldset class="formSaveUserFieldset">
+                        <div class="p-3">
+                            <div class="form-group">
+                                <label for="inputUserName">Nome</label>
+                                <input type="text" class="form-control" name="inputUserName" id="inputUserName"
+                                    placeholder="Nome completo" required>
+                            </div>
+                            <br>
+
+                            <div class="form-group">
+                                <label for="inputUserNif">Némero do Bilhete</label>
+                                <input type="text" class="form-control" name="inputUserNif" id="inputUserNif"
+                                    placeholder="Digite o NIF">
+                            </div>
+                            <br>
+
+                            <div class="form-group">
+                                <label for="inputUserPhonenumber">Contacto</label>
+                                <input type="tel" class="form-control" maxlength="9" name="inputUserPhonenumber"
+                                    id="inputUserPhonenumber" placeholder="Digite o número de telefone" required>
+                            </div>
+                            <br>
+
+                            <div class="form-group">
+                                <label for="inputUserEmail">E-mail</label>
+                                <input type="email" class="form-control clear-input" name="inputUserEmail"
+                                    id="inputUserEmail" placeholder="Endereço de e-mail" required>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">Cancelar</button>
+
+                        <button type="submit" id="btnSaveUser" class="btn btn-primary">Salvar</button>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/associete.js"></script>

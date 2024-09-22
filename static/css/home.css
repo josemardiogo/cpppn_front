@@ -1,0 +1,48 @@
+
+.conatiner{
+    padding: 10px;
+}
+.conatiner .prencipal-home{
+    padding: 10px;
+    width: 100%;
+}
+.prencipal-home .associado{
+    padding: 0;
+    display: flex;
+    min-width: 200px;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px #ccc;
+    display: flex;
+    align-self: center !important;
+    justify-self: center !important;
+    flex-direction: row;
+    border-radius: 10PX;
+    z-index: 1;
+    margin-bottom: 25px;
+}
+.conatiner .prencipal-home .associado .icone{
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.conatiner .prencipal-home .associado .icone .icone-associado{
+    font-size: 45px;
+    font-weight: bold;
+    color: #7ED4F1;
+}
+.conatiner .prencipal-home .associado .numero_descricao{
+    display: flex;
+    width: 65%;
+    flex-direction: column;
+}
+.numero{
+    height: 50%;
+    padding: 15px;
+    font-weight: bold;
+}
+.descricao{
+    padding: 15px;
+    height: 50%;
+    font-weight: bold;
+} 
