@@ -8,6 +8,7 @@ app.secret_key = '434BHG@.cfre,JK'
 @app.route('/')
 @app.route('/login')
 @app.route('/dashboard')
+@app.route('/dashboard/home')
 @app.route('/dashboard/associates')
 def index_route():
     return render_template('index.html')

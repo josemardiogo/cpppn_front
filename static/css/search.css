@@ -1,0 +1,52 @@
+.search {
+    text-align: right;
+    display: flex;
+    align-items: center;
+}
+
+.search>div {
+    display: inline-block;
+    position: relative;
+}
+
+
+@media (max-width: 500px) {
+    .search {
+        position: absolute;
+        top: 12px;
+        right: 0px;
+    }
+
+    .search svg {
+        color: #fff;
+    }
+}
+
+@media (max-height: 700px) {
+    .search {
+        top: 5px;
+    }
+}
+
+
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.search-bar {
+    transition: width 0.4s ease, opacity 0.4s ease;
+    width: 0;
+    opacity: 0;
+    margin-right: 15px; /* Minimal margin between search input and button */
+}
+.search-bar.expand {
+    width: 200px;
+    opacity: 1;
+}
+.search-btn {
+    border-radius: 0;
+    z-index: 1; /* Make sure button stays on top of input */
+    padding: 6px 10px;
+}

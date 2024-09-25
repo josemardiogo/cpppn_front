@@ -1,0 +1,63 @@
+.main-item {
+    padding: 10px;
+    background-color: #fff;
+    width: 700px;
+    margin: auto;
+}
+
+@keyframes aumentaDiminuiCor {
+    0% {
+        background-color: #00000013;
+    }
+    25% {
+        background-color: #00000023;
+    }
+    75% {
+        background-color: #00000023;
+    }
+    100% {
+        background-color: #00000013;
+    }
+}
+
+.animated-background .circle,
+.animated-background .cell {
+    animation-duration: 1s; /* Aumenta a duração para 4 segundos */
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.circle {
+    width: 48px;
+    height: 48px;
+    margin: 0 20px;
+    border-radius: 50%;
+    animation-name: aumentaDiminuiCor;
+    background-color: silver;
+}
+
+.bar {
+    background-color: #eeeeee00;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px 20px 20px 0px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    row-gap: 0px;
+    padding: 10px;
+}
+
+.cell {
+    border-radius: 5px;
+    height: 20px;
+    width: 200px;
+    margin: 10px 0;
+    animation-name: aumentaDiminuiCor;
+    background-color: silver; /* Define a cor prateada */
+}

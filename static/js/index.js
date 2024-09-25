@@ -22,8 +22,14 @@ function server_error(status, error, xhr_responseText) {
 
 function LoadLoginDasboard(template_path) {
     $('.body-content').load(`/render_template/${template_path}`, function (response, status, xhr) {
+
         if (status == 'success') {
-            hide_loader();
+            if (url.indexOf("/dashboard/") !== -1) {
+                let route = url.split('/dashboard').pop()
+                if (template_path == 'dashboard' && (route != '' && route != '/')) {
+                    template_path = `${template_path}${route}`
+                }
+            }
             history.replaceState(null, '', `/${template_path}`)
         } else {
             alert('404')
@@ -41,6 +47,11 @@ function hide_loader() {
 
     $('#spinnerContainer').hide();
     $('#overlay').hide();
+}
+
+function modal(template_name, selector) {
+    let modal = $(`.${template_name}-modals`).find(selector)
+    return modal
 }
 
 
@@ -88,4 +99,21 @@ function message(type, title, msg, back = false, to = null, hide = null, back_te
     $('#ModalMessageButtonOk').text(ok_text ? ok_text : 'Ok')
 
     return $('#ModalMessage')
+}
+
+
+function loading_effect() {
+    $('.parent-div')
+        .html(`
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+            <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
+        `)
 }

@@ -1,48 +1,96 @@
+:root {
+    --first-color: #d4d4d4;
+    --bg-first: #fff;
+    --bg-secondary: #2A1572;
+    /* --bg-third: #C3E4FF; */
+    --bg-third: #2196f3;
+}
 
-.conatiner{
-    padding: 10px;
-}
-.conatiner .prencipal-home{
-    padding: 10px;
-    width: 100%;
-}
-.prencipal-home .associado{
-    padding: 0;
+.card-count{
     display: flex;
     min-width: 200px;
+    height: 90px;
     background-color: #fff;
-    box-shadow: 1px 1px 10px #ccc;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.1);;
     display: flex;
-    align-self: center !important;
-    justify-self: center !important;
     flex-direction: row;
-    border-radius: 10PX;
-    z-index: 1;
-    margin-bottom: 25px;
+    border-radius: 10px;
+    z-index: 50;
+    margin-bottom: 24px;
 }
-.conatiner .prencipal-home .associado .icone{
+.card-count .icone{
     width: 35%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.conatiner .prencipal-home .associado .icone .icone-associado{
+.card-count .icone .icone-card-count{
     font-size: 45px;
     font-weight: bold;
-    color: #7ED4F1;
+    color: var(--bg-third);
 }
-.conatiner .prencipal-home .associado .numero_descricao{
+.card-count .numero_descricao{
     display: flex;
     width: 65%;
     flex-direction: column;
+    justify-content: center;
 }
 .numero{
-    height: 50%;
-    padding: 15px;
     font-weight: bold;
 }
 .descricao{
-    padding: 15px;
-    height: 50%;
     font-weight: bold;
 } 
+
+.grafico_bolsa {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.grafico_bolsa > h1{
+    font-size: 15px;
+}
+
+.card-count_one{
+    padding: 0;
+    display: flex;
+    min-width: 200px;
+    background-color: #fff;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10PX;
+    z-index: 50;
+    margin-bottom: 25px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: var(--bg-third);
+    color: white;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 1199px) {
+    .row-column-2 {
+        gap: 24px;
+    }
+}
+
+.container-table {
+    margin-top: 24px;
+}

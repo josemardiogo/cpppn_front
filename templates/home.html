@@ -1,19 +1,19 @@
 <link rel="stylesheet" href="/static/css/home.css">
 
-<div class="conatiner">
-    
-    <div class="prencipal-home">
+<div class="py-4">
 
-        <div class="row">
+    <div class="container">
+        <div class="row prencipal-home">
+
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 
-                <div class="associado">
+                <div class="card-count">
                     <div class="icone">
-                        <i class="bi bi-people icone-associado"></i>
+                        <i class="bi bi-people icone-card-count"></i>
                     </div>
                     <div class="numero_descricao">
                         <div class="numero">
-                           <span> 100000</span>
+                            <span> 15.000</span>
                         </div>
                         <div class="descricao">
                             Associados
@@ -22,15 +22,16 @@
                 </div>
 
             </div>
+
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 
-                <div class="associado">
+                <div class="card-count">
                     <div class="icone">
-                        <i class="bi bi-house icone-associado"></i>
+                        <i class="bi bi-house icone-card-count"></i>
                     </div>
                     <div class="numero_descricao">
                         <div class="numero">
-                           <span> 100000</span>
+                            <span> 1.000</span>
                         </div>
                         <div class="descricao">
                             Abitações
@@ -39,15 +40,16 @@
                 </div>
 
             </div>
+
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 
-                <div class="associado">
+                <div class="card-count">
                     <div class="icone">
-                        <i class="bi bi-heart icone-associado"></i>
+                        <i class="bi bi-heart icone-card-count"></i>
                     </div>
                     <div class="numero_descricao">
                         <div class="numero">
-                           <span> 100</span>
+                            <span> 20</span>
                         </div>
                         <div class="descricao">
                             Planos de Saúde
@@ -56,35 +58,127 @@
                 </div>
 
             </div>
+
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 
-                <div class="associado">
+                <div class="card-count">
                     <div class="icone">
-                        <i class="bi bi-people icone-associado"></i>
+                        <i class="bi bi-people icone-card-count"></i>
                     </div>
                     <div class="numero_descricao">
                         <div class="numero">
-                           <span> 100000</span>
+                            <span> 140.000</span>
                         </div>
                         <div class="descricao">
-                            Associados
+                            Membros
                         </div>
                     </div>
                 </div>
 
             </div>
-        </div>
 
+        </div>
     </div>
-    <div class="container mt-5">
-        <div class="row">
 
-            <div class="col-lg-3">lopes</div>
-            <div class="col-lg-3">lopes</div>
-            <div class="col-lg-3">lopes</div>
-            <div class="col-lg-3">lopes</div>
+    <div class="container">
+        <div class="row row-column-2">
+
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                <div class="grafico_bolsa">
+                    <h1>Variação de Preços de Ações</h1>
+                    <canvas id="stockChart"></canvas>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                <div class="grafico_bolsa">
+                    <h1>Gráfico de "" - Cofre da Polícia de Angola</h1>
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
 
         </div>
+    </div>
+
+    <div class="container container-table">
+        <div class="grafico_bolsa">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mês</th>
+                            <th>Valores Arrecadados (Kz)</th>
+                            <th>Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Janeiro</td>
+                            <td>1.500.000</td>
+                            <td>Início das atividades de arrecadação.</td>
+                        </tr>
+                        <tr>
+                            <td>Fevereiro</td>
+                            <td>2.000.000</td>
+                            <td>Aumento na conscientização pública.</td>
+                        </tr>
+                        <tr>
+                            <td>Março</td>
+                            <td>3.000.000</td>
+                            <td>Promoções de arrecadação bem-sucedidas.</td>
+                        </tr>
+                        <tr>
+                            <td>Abril</td>
+                            <td>2.500.000</td>
+                            <td>Estabilidade nos valores arrecadados.</td>
+                        </tr>
+                        <tr>
+                            <td>Maio</td>
+                            <td>4.000.000</td>
+                            <td>Campanhas de sensibilização.</td>
+                        </tr>
+                        <tr>
+                            <td>Junho</td>
+                            <td>3.500.000</td>
+                            <td>Leve queda, revisar estratégias.</td>
+                        </tr>
+                        <tr>
+                            <td>Julho</td>
+                            <td>4.500.000</td>
+                            <td>Recuperação com novas iniciativas.</td>
+                        </tr>
+                        <tr>
+                            <td>Agosto</td>
+                            <td>3.000.000</td>
+                            <td>Consistência nas operações.</td>
+                        </tr>
+                        <tr>
+                            <td>Setembro</td>
+                            <td>5.000.000</td>
+                            <td>Fortalecimento das relações comunitárias.</td>
+                        </tr>
+                        <tr>
+                            <td>Outubro</td>
+                            <td>6.000.000</td>
+                            <td>Altas contribuições em eventos especiais.</td>
+                        </tr>
+                        <tr>
+                            <td>Novembro</td>
+                            <td>5.500.000</td>
+                            <td>Resultados positivos contínuos.</td>
+                        </tr>
+                        <tr>
+                            <td>Dezembro</td>
+                            <td>7.000.000</td>
+                            <td>Fechamento do ano com excelentes resultados.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
 </div>
+
+<script src="/static/js/home.js"></script>

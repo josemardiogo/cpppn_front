@@ -1,22 +1,26 @@
 <link rel="stylesheet" href="/static/css/login.css">
 
-<div class="login-container form-signin w-100 m-auto">
-    <form id="formLogin">
-        <h3 class="login-title">Iniciar sessão<optgroup></optgroup></h3>
+<div class="fundo">
+    <div class="login-container form-signin w-100 m-auto">
 
-        <div class="mb-3">
-            <label for="inputEmail" class="form-label">Endereço e-email</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Digitar endereço e-mail">
-        </div>
+        <form id="formLogin">
+            <h3 class="login-title">Iniciar sessão</h3>
+    
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Endereço e-email</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Digitar endereço e-mail" required>
+            </div>
+    
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Palavra-passe</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Digitar palavra-passe" required>
+            </div>
+    
+            <button type="submit" class="btn btn-primary w-100" id="btn_login">Entrar</button>
+            <!-- <span>If you do not have an account, we gonna create a new one for you.</span> -->
+        </form>
 
-        <div class="mb-3">
-            <label for="inputPassword" class="form-label">Palavra-passe</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Digitar palavra-passe">
-        </div>
-
-        <button type="submit" class="btn btn-primary w-100" id="btn_login">Entrar</button>
-        <!-- <span>If you do not have an account, we gonna create a new one for you.</span> -->
-    </form>
+    </div>
+    
 </div>
-
 <script src="/static/js/login.js"></script>

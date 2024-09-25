@@ -1,26 +1,24 @@
+let template
+
 $(document).ready(function () {
 
-    let btn_menu = $(".btn-menu");
-    let aside = $(".dashboard");
-    let background = $("#bg-black")
-
     function btn_menu_click() {
-        if (aside.hasClass('d-show')) {
-            aside.removeClass('d-show')
-            background.hide()
+        if ($(".dashboard").hasClass('d-show')) {
+            $(".dashboard").removeClass('d-show')
+            $("#bg-black").hide()
         } else {
-            aside.addClass('d-show')
-            background.show()
+            $(".dashboard").addClass('d-show')
+            $("#bg-black").show()
         }
     }
 
-    btn_menu.click(function () {
+    $(".btn-menu").click(function () {
         btn_menu_click()
     })
 
-    background.click(function () {
-        aside.removeClass('d-show')
-        background.hide()
+    $("#bg-black").click(function () {
+        $(".dashboard").removeClass('d-show')
+        $("#bg-black").hide()
     })
 
 
@@ -32,10 +30,10 @@ $(document).ready(function () {
 
     function window_resize() {
         if (window.innerWidth > 1000) {
-            aside.addClass('d-show')
+            $(".dashboard").addClass('d-show')
         } else {
-            background.hide()
-            aside.removeClass('d-show')
+            $("#bg-black").hide()
+            $(".dashboard").removeClass('d-show')
         }
     }
 
@@ -59,7 +57,9 @@ $(document).ready(function () {
 
         let show = $(this).attr('show')
 
-        $('.link').text(show + "/");
+        let pt_shows = { 'associates': ' / Associados', 'home': ' / Início' }
+
+        $('.link').text(pt_shows[show]);
 
         if (show) {
             show_loader()
@@ -67,15 +67,13 @@ $(document).ready(function () {
         }
     })
 
-    let route = url.split('/dashboard').pop()
-    console.log(route);
-    
-    if(route == '' || route == '/') {
-        load_window('home');
-    } else {
+    if (url.includes('/dashboard/')) {
+        let route = url.split('/dashboard/').pop()
         load_window(route);
+    } else {
+        load_window('home');
     }
-    
+
 
 })
 
@@ -83,6 +81,7 @@ function load_window(show) {
 
     $('.show-content').load(`/render_template/${show}`, function (response, status, xhr) {
         if (status == 'success') {
+            history.pushState(null, '', `/dashboard/${show}`)
         } else {
             alert('404')
         }

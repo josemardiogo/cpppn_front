@@ -23,6 +23,11 @@
     animation: spin 1s linear infinite;
 }
 
+.loading-image {
+    position: absolute;
+    z-index: 20000;
+}
+
 /* Animação de rotação */
 @keyframes spin {
     to {
@@ -38,4 +43,15 @@
     height: 100%;
     background: #7ED4F1; /* Semi-transparente para bloquear a interação */
     z-index: 10; /* Abaixo do spinner */
+}
+
+
+.no-results-message {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
 }

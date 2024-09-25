@@ -1,16 +1,9 @@
 $(document).ready(function () {
 
+    hide_loader();
+
     $('#formLogin').submit(function (event) {
         event.preventDefault()
-
-
-        // show_loader();
-        // let verificar = verificarUsuario(email, password);
-        // if (verificar) {
-        //     LoadLoginDasboard('dashboard');
-        // }else{
-        //     alert("verifcar emaile e password");
-        // }
 
         let datas = {
             email: $('#inputEmail').val(),
