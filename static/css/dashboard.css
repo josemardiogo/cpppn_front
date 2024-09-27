@@ -192,6 +192,8 @@
     min-width: 250px;
     max-width: 250px;
     border-bottom: 1px solid var(--first-color);
+    transition: 1s;
+    transform: rotate(0deg);
 }
 
 .picture {
@@ -242,7 +244,6 @@
 
 .li-nav {
     display: flex;
-    gap: 5px;
     flex-direction: column;
     transition: height .5s;
     height: 44px;
@@ -252,9 +253,9 @@
 .i-menu{
     font-weight: bold;
 }
-.li-nav.show {
+/* .li-nav.show {
     height: auto;
-}
+} */
 
 .li-nav-header {
     display: flex;
@@ -300,15 +301,17 @@
     padding: 10px;
     color: #000;
 }
-.left-icon{
+
+.right-icon{
     transition: 1s;
     transform: rotate(0deg);
 }
    
 .left-icon-volatr{
-    transform: rotate(-90deg);  
+    transform: rotate(-90deg);
     transition: transform 1s;
 }
+
 .link{
     font-weight: bold;
     padding-left: 5px;

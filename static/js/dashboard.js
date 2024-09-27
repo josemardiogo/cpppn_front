@@ -45,9 +45,20 @@ $(document).ready(function () {
 
     $('.li-nav-header').click(function () {
         $(this).toggleClass('active')
-        $(this).parent().toggleClass('show')
-        $('.bi-chevron-left').removeClass('left-icon');
-        $('.bi-chevron-left').toggleClass('left-icon-volatr');
+        let li_nav = $(this).parent()
+        li_nav.toggleClass('show')
+        let li_items = li_nav.find('.ul-ul-nav').find('.li-li-nav').length
+        if (li_nav.hasClass('show')) {
+            li_nav.css({
+                height: (li_items + 1) * 45
+            })
+        } else {
+            li_nav.css({
+                height: 45
+            })
+        }
+        const chevronIcon = $(this).find('.bi-chevron-left');
+        chevronIcon.toggleClass('right-icon left-icon-volatr');
     })
 
     $('.li-li-nav').click(function () {
