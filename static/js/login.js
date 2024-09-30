@@ -29,8 +29,8 @@ $(document).ready(function () {
             success: function(response) {
                 if (response.status === 'success') {
                     localStorage.setItem('current_user', response.user.id)
-                    localStorage.setItem('login_token', token)
-                    api_url_headers = { 'X-Access-Key': api_key, 'Login-Token': login_token }
+                    localStorage.setItem('login_token', response.login_token.token)
+                    api_url_headers = { 'X-Access-Key': api_key, 'Login-Token': response.login_token.token }
                     LoadLoginDasboard('dashboard')
                 } else {
                     message('error', 'Erro!', response.msg).modal('show');

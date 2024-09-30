@@ -1,11 +1,10 @@
-template = 'associates'
+
 
 $(document).ready(function () {
-
     // load modals
-    if ($('.modals').find(`.${template}-modals`).length == 0) {
+    if ($('.modals').find(`.associates-modals`).length == 0) {
         $('.modals').append(`
-            <div class="${template}-modals">
+            <div class="associates-modals">
                 ${$('.this-modals').html()}
             </div>
         `)

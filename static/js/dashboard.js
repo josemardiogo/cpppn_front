@@ -1,5 +1,3 @@
-let template
-
 $(document).ready(function () {
 
     function btn_menu_click() {
@@ -85,6 +83,28 @@ $(document).ready(function () {
         load_window('home');
     }
 
+    $('.btn-log-out').click(function () {
+        $.ajax({
+            url: `${api_url}/log_in_out`,
+            type: 'DELETE',
+            contentType: 'application/json',
+            headers: { 'X-Access-Key': api_key },
+            data: JSON.stringify({ login_token: login_token }),
+            success: function(response) {
+                if (response.status === 'success') {
+                    localStorage.removeItem('current_user')
+                    localStorage.removeItem('login_token')
+                    api_url_headers = { 'X-Access-Key': null, 'Login-Token': null }
+                    LoadLoginDasboard('login')
+                } else {
+                    message('error', 'Erro!', response.msg).modal('show');
+                }
+            },
+            error: function(xhr, status, error) {
+                server_error(status, error, xhr.responseText);
+            }
+        });
+    })
 
 })
 
