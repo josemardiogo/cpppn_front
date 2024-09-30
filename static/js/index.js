@@ -1,16 +1,22 @@
 
 $(document).ready(function () {
-    $.post('/start', function (response) {
-        if (response.status == 'success') {
-            let template = 'login'
-            if (response.logged) {
-                template = 'dashboard'
-            }
-            LoadLoginDasboard(template);
-        } else {
-            message('error', 'Erro!', response.msg).modal('show')
-        }
-    }).fail(function (xhr, status, error) { server_error(status, error, xhr.responseText) });
+
+
+    let storedToken = localStorage.getItem('login_token');
+    if (storedToken) {
+        console.log('Token retrieved:', storedToken);
+        // Agora você pode usar o token para fazer outras requisições ou operações
+        api_url_headers = { 'X-Access-Key': api_key, 'Login-Token': storedToken };
+    } else {
+        console.log('No token found in localStorage.');
+    }
+
+    let template = 'login'
+    if (storedToken) {
+        template = 'dashboard'
+    }
+    // LoadLoginDasboard(template);
+    LoadLoginDasboard(template);
 })
 
 

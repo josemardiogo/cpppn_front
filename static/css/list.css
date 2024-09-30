@@ -10,7 +10,7 @@
 }
 
 .button-create {
-    max-height: 20px;
+    padding: 5px 0;
 }
 
 .button-create .right{
@@ -23,7 +23,7 @@
 }
 
 .parent-div {
-    flex-grow: 1;
+    height: calc(100% - 50px);
     overflow-y: auto;
     clear: both;
     border-top: 1px solid rgb(192, 192, 192);
@@ -31,12 +31,14 @@
 
 .view_item {
     cursor: pointer;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     min-height: 100px;
     padding: 0 !important;
 }
 
 .view_item:hover {
+    /* transform: scale(1.05); */
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.459); */
     background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -81,9 +83,12 @@
     justify-content: center;
     width: 40px;
     height: 40px;
+    transition: transform .5s;
 }
 
 .actions div:hover {
+    transform: scale(1.05);
+    box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.459);
     background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -161,14 +166,6 @@
 
     .btn-new {
         height: 80px;
-    }
-
-    .parent-div {
-        height: calc(100% - 40px);
-    }
-
-    .parent-div-new {
-        padding-bottom: 45px;
     }
 }
 

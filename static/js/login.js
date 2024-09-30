@@ -10,13 +10,27 @@ $(document).ready(function () {
             password: $('#inputPassword').val()
         }
 
+        /*
+        # =================================================================================================
+        @app.route('/login', methods=['POST'])
+        def login_route():
+            
+            datas = request.get_json()
+            res = login(datas['email'], datas['password'])
+            session['login_token'] = res['login_token']
+            return jsonify(res)
+        */
         $.ajax({
-            url: '/login',
+            url: `${api_url}/log_in_out`,
             type: 'POST',
             contentType: 'application/json',
+            headers: { 'X-Access-Key': api_key },
             data: JSON.stringify(datas),
             success: function(response) {
                 if (response.status === 'success') {
+                    localStorage.setItem('current_user', response.user.id)
+                    localStorage.setItem('login_token', token)
+                    api_url_headers = { 'X-Access-Key': api_key, 'Login-Token': login_token }
                     LoadLoginDasboard('dashboard')
                 } else {
                     message('error', 'Erro!', response.msg).modal('show');

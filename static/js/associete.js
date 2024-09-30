@@ -57,7 +57,7 @@ $(document).ready(function () {
                 type: 'PUT',
                 contentType: 'application/json',
                 data: JSON.stringify(datas),
-                headers: { 'X-Access-Key': api_key },
+                headers: api_url_headers,
                 success: function (response) {
                     if (response.status === 'success') {
                         // clear list if no associates
@@ -83,7 +83,7 @@ $(document).ready(function () {
                 type: 'PATCH',
                 contentType: 'application/json',
                 data: JSON.stringify(datas),
-                headers: { 'X-Access-Key': api_key },
+                headers: api_url_headers,
                 success: function (response) {
                     if (response.status === 'success') {
                         //add_associate(response.user)
@@ -158,7 +158,7 @@ $(document).ready(function () {
                 type: 'PATCH',
                 contentType: 'application/json',
                 data: JSON.stringify({ id: id, request_type: "delete" }),
-                headers: { 'X-Access-Key': api_key },
+                headers: api_url_headers,
                 success: function (response) {
                     if (response.status === 'success') {
                         message('success', 'Sucesso', 'Associado Eliminado com sucesso.', false, null, '.ModalUser').modal('show')
@@ -191,7 +191,7 @@ function get_user(id) {
         type: 'GET',
         contentType: 'application/json',
         data: JSON.stringify({ id: id }),
-        headers: { 'X-Access-Key': api_key },
+        headers: api_url_headers,
         success: function (response) {
             if (response.status === 'success') {
                 let user = response.user
@@ -221,7 +221,7 @@ function users_get(type) {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ type: type }),
-        headers: { 'X-Access-Key': api_key },
+        headers: api_url_headers,
         success: function (response) {
             if (response.status === 'success') {
                 $('.parent-div').empty()
@@ -249,7 +249,7 @@ function add_associate(associate, prepend = false) {
     var new_div =
         `<div class="container-fluid">
             <div class="row">
-                <div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 p-0" id="${associate.id}">
+                <div class="view_item col new d-flex align-items-center overflow-hidden m-0 p-0" id="${associate.id}">
                     
                     <div class="icon mr-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white"
