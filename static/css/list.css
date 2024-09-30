@@ -23,11 +23,9 @@
 }
 
 .parent-div {
-    height: calc(100% - 55px);
-    padding-bottom: 10px;
+    flex-grow: 1;
     overflow-y: auto;
     clear: both;
-    margin-top: 20px;
     border-top: 1px solid rgb(192, 192, 192);
 }
 
@@ -160,11 +158,6 @@
 }
 
 @media (max-height: 700px) {
-    .main {
-        height: calc(100% - 50px);
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
 
     .btn-new {
         height: 80px;
@@ -176,11 +169,6 @@
 
     .parent-div-new {
         padding-bottom: 45px;
-    }
-
-    .button-create {
-        margin-top: 10px !important;
-        margin-bottom: 10px !important;
     }
 }
 

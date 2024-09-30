@@ -32,7 +32,13 @@ $(document).ready(function () {
         let nif = $('#inputUserNif').val()
         let phone_number = $('#inputUserPhonenumber').val()
         let email = $('#inputUserEmail').val()
-        let id = modal(template, '.ModalUser').attr('user_id')
+        let rank = $('#inputUserRank').val()
+        let id = $('.ModalUser').attr('user_id')
+        
+        if (rank == -1) {
+            alert("Selecione a patente")
+            return
+        }
 
         let datas = {
             name: name,
@@ -41,31 +47,33 @@ $(document).ready(function () {
             email: email,
             type: 'associate',
             request_type: 'update',
+            rank: rank,
             id: id
         }
 
         if (!id) {
-
             $.ajax({
                 url: `${api_url}/user`,
                 type: 'PUT',
                 contentType: 'application/json',
                 data: JSON.stringify(datas),
-                headers: {
-                    'X-Access-Key': 'ery4we5633y5iu43b534358d7foueroj58934ipqrie;r457rfd!2w323'
-                },
+                headers: { 'X-Access-Key': api_key },
                 success: function (response) {
                     if (response.status === 'success') {
+                        // clear list if no associates
+                        if ($('.parent-div').text() == 'Nenhum associado encontrado.')
+                            $('.parent-div').empty()
+
                         add_associate(response.user)
                         message('success', 'Sucesso', 'Associado registado com sucesso.', false, null, '.ModalUser').modal('show')
                         // clean form for new save
                         cleanFormUser()
                     } else {
-                        message('error', 'Erro!', response.msg).modal('show');
+                        message('error', 'Erro!', response.msg, false, null, '.ModalUser').modal('show')
                     }
                 },
                 error: function (xhr, status, error) {
-                    server_error(status, error, xhr.responseText);
+                    message('error', `Erro (${status})`, `${xhr.responseText}`, false, null, '.ModalUser').modal('show')
                 }
             });
         } else {
@@ -75,23 +83,21 @@ $(document).ready(function () {
                 type: 'PATCH',
                 contentType: 'application/json',
                 data: JSON.stringify(datas),
-                headers: {
-                    'X-Access-Key': 'ery4we5633y5iu43b534358d7foueroj58934ipqrie;r457rfd!2w323'
-                },
+                headers: { 'X-Access-Key': api_key },
                 success: function (response) {
                     if (response.status === 'success') {
                         //add_associate(response.user)
-                        $(`.view_item#${response.user.id}`).remove()
-                        add_associate(response.user)
-                        message('success', 'Sucesso', 'Associado registado com sucesso.', false, null, '.ModalUser').modal('show')
+                        $(`.view_item#${id}`).remove()
+                        add_associate(response.user, true)
+                        message('success', 'Sucesso', 'Informações do associado atualizados com sucesso.', false, null, '.ModalUser').modal('show')
                         // clean form for new save
                         cleanFormUser()
                     } else {
-                        message('error', 'Erro!', response.msg).modal('show');
+                        message('error', 'Erro!', response.msg, false, null, '.ModalUser').modal('show');
                     }
                 },
                 error: function (xhr, status, error) {
-                    server_error(status, error, xhr.responseText);
+                    message('error', 'Erro!', xhr.responseText, false, null, '.ModalUser').modal('show');
                 }
             });
         }
@@ -115,7 +121,7 @@ $(document).ready(function () {
         $('.formSaveUserFieldset').removeAttr('disabled')
         $('#btnSaveUser').removeClass('d-none')
 
-        modal(template, '.ModalUser')
+        $('.ModalUser')
             .removeAttr('user_id')
             .modal('show')
 
@@ -135,7 +141,7 @@ $(document).ready(function () {
     $('.parent-div').on('click', '.action_edit', function (event) {
         event.stopPropagation()
         let id = $(this).closest('.view_item').attr('id')
-        modal(template, '.ModalUser').attr('user_id', id);
+        $('.ModalUser').attr('user_id', id);
         $('.associado').text('Editar Associado')
 
         get_user(id)
@@ -147,27 +153,17 @@ $(document).ready(function () {
     $('#ModalMessageButtonOk').click(function () {
         if ($(this).attr('action') == 'delete_user') {
             let id = $('#ModalMessage').attr('action_value');
-
-            // remove user from list
-            $(`.view_item#${id}`).remove()
-
             $.ajax({
                 url: `${api_url}/user`,
                 type: 'PATCH',
                 contentType: 'application/json',
-                data: JSON.stringify(
-                    {
-                        id: id,
-                        request_type: "delete"
-                    }
-                ),
-                headers: {
-                    'X-Access-Key': 'ery4we5633y5iu43b534358d7foueroj58934ipqrie;r457rfd!2w323'
-                },
+                data: JSON.stringify({ id: id, request_type: "delete" }),
+                headers: { 'X-Access-Key': api_key },
                 success: function (response) {
                     if (response.status === 'success') {
-                        add_associate(response.user)
                         message('success', 'Sucesso', 'Associado Eliminado com sucesso.', false, null, '.ModalUser').modal('show')
+                        // remove user from list
+                        $(`.view_item#${id}`).remove()
                         // clean form for new save
                         cleanFormUser()
                     } else {
@@ -195,9 +191,7 @@ function get_user(id) {
         type: 'GET',
         contentType: 'application/json',
         data: JSON.stringify({ id: id }),
-        headers: {
-            'X-Access-Key': 'ery4we5633y5iu43b534358d7foueroj58934ipqrie;r457rfd!2w323'
-        },
+        headers: { 'X-Access-Key': api_key },
         success: function (response) {
             if (response.status === 'success') {
                 let user = response.user
@@ -205,7 +199,8 @@ function get_user(id) {
                 $('#inputUserNif').val(user.nif)
                 $('#inputUserPhonenumber').val(user.phone_number)
                 $('#inputUserEmail').val(user.email)
-                modal(template, '.ModalUser').modal('show');
+                $('#inputUserRank').val(user.rank)
+                $('.ModalUser').modal('show');
             } else {
                 message('error', 'Erro!', response.msg).modal('show');
             }
@@ -226,7 +221,7 @@ function users_get(type) {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ type: type }),
-        headers: { 'X-Access-Key': 'ery4we5633y5iu43b534358d7foueroj58934ipqrie;r457rfd!2w323' },
+        headers: { 'X-Access-Key': api_key },
         success: function (response) {
             if (response.status === 'success') {
                 $('.parent-div').empty()
@@ -247,9 +242,10 @@ function cleanFormUser() {
     $('#inputUserNif').val('')
     $('#inputUserPhonenumber').val('')
     $('#inputUserEmail').val('')
+    $('#inputUserRank').val('-1')
 }
 
-function add_associate(associate) {
+function add_associate(associate, prepend = false) {
     var new_div =
         `<div class="container-fluid">
             <div class="row">
@@ -282,6 +278,14 @@ function add_associate(associate) {
 
                             </div>
 
+                            <div class="block2">
+
+                                <div class="text-truncate company-email">
+                                    ${ranks.find(option => option.value == associate.rank).label}
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
 
@@ -309,5 +313,8 @@ function add_associate(associate) {
             </div>
         </div>`;
 
-    $('.list-associetes').prepend(new_div)
+    if (prepend)
+        $('.list-associetes').prepend(new_div)
+    else
+        $('.list-associetes').append(new_div)
 }

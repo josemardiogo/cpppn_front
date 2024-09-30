@@ -85,7 +85,10 @@
 }
 
 .chat-header {
-    height: 7vh;
+    /* height: 7vh; */
+    height: 68px;
+    min-height: 68px;
+    max-height: 68px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -118,7 +121,7 @@
 
 .show-content {
     position: relative;
-    height: 86vh;
+    height: calc(100vh - (132px));
     scroll-behavior: smooth;
     overflow-y: auto;
 }
@@ -188,7 +191,8 @@
 }
 
 .aside-header {
-    height: 7vh;
+    /* height: 7vh; */
+    height: 68px;
     min-width: 250px;
     max-width: 250px;
     border-bottom: 1px solid var(--first-color);
@@ -201,14 +205,17 @@
     width: 50px;
     height: 50px;
     margin-right: 10px;
-    background-image: url('/static/img/logo.jpeg');
+    background-image: url('../img/logo.jpeg');
     background-position: center;
     background-size: cover;
 }
 
 .footer {
     border-top: 1px solid var(--first-color);
-    height: 7vh;
+    /* height: 7vh; */
+    flex-grow: 1;
+    min-height: 68px;
+    max-height: 68px;
     display: flex;
     align-items: center;
     padding: 20px;
@@ -219,7 +226,7 @@
 
 .nav-menu {
     position: relative;
-    height: 100vh;
+    height: calc(100vh - 68px);
     overflow: auto;
     min-width: 250px;
     max-width: 250px;

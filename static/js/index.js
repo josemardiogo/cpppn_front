@@ -76,8 +76,9 @@ function message(type, title, msg, back = false, to = null, hide = null, back_te
         .removeAttr('data-bs-toggle')
 
     $('#ModalMessageButtonBack, #ModalMessageButtonBackTop').addClass('d-none')
-    if (hide != null)
+    if (hide != null) {
         $(hide).modal('hide')
+    }
     if (back) {
         $('#ModalMessageButtonBackTop')
             .removeClass('d-none')
