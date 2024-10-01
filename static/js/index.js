@@ -1,7 +1,6 @@
 
 $(document).ready(function () {
 
-
     let storedToken = localStorage.getItem('login_token');
     if (storedToken) {
         console.log('Token retrieved:', storedToken);
@@ -18,6 +17,76 @@ $(document).ready(function () {
     // LoadLoginDasboard(template);
     LoadLoginDasboard(template);
 })
+
+
+let view_item_icon
+let view_item_svg
+let get_loading = false
+
+function start_view_item_loader(id = null, attr_name = null, attr_value = null, spinner_size = 48) {
+    // active load
+    $(document).ready(function () {
+        if (id) {
+            let view_item = $(`.view_item#${id}`)
+            view_item_icon = view_item.find('.icon')
+            if (view_item_icon.length == 0)
+                return
+            // verify if view item is for low window notif
+            if (view_item.hasClass('notif-item') && view_item.closest('.notifs-list').length != 0) {
+                spinner_size = 30
+            }
+        }
+        else if (attr_name && attr_value) {
+            view_item_icon = $(`.view_item[${attr_name}="${attr_value}"]`).find('.icon')
+        }
+        // get bg class
+        let bgClass = view_item_icon.find('.rounded-circle').attr('class').split(' ').filter(c => c.startsWith('bg-'))[0];
+
+        let view_item_loader = `
+            <div class="d-flex justify-content-center align-items-center" style="width: ${spinner_size}px; height: ${spinner_size}px;">
+                <div class="${bgClass} p-1 rounded-circle d-flex justify-content-center align-items-center" style="width:  ${spinner_size}px; height:  ${spinner_size}px;">
+                    <div class="spinner-border text-light" role="status" style="width: ${spinner_size - 16}px; height: ${spinner_size - 16}px;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>`
+        // return if is loading
+        if (view_item_icon.html() == view_item_loader)
+            return
+        view_item_svg = view_item_icon.html()
+        view_item_icon.html(view_item_loader)
+        get_loading = true
+    });
+}
+
+
+function stop_view_item_loader() {
+    view_item_icon.html(view_item_svg)
+    get_loading = false
+}
+
+let save_btn
+let save_btn_html
+let save_loading = false
+
+function save_loader_start(parent_selector) {
+    save_btn = $(parent_selector).find('.save')
+    save_btn_html = save_btn.html()
+    save_btn.html(`
+        <div class="d-flex justify-content-center align-items-center" style="width: ${spinner_size}px; height: ${spinner_size}px;">
+            <div class="${bgClass} p-1 rounded-circle d-flex justify-content-center align-items-center" style="width:  ${spinner_size}px; height:  ${spinner_size}px;">
+                <div class="spinner-border text-light" role="status" style="width: ${spinner_size - 16}px; height: ${spinner_size - 16}px;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>`)
+    save_loading = true
+}
+
+function save_loader_stop() {
+    save_btn.html(save_btn_html)
+    save_loading = false
+}
 
 
 function server_error(status, error, xhr_responseText) {
@@ -44,13 +113,11 @@ function LoadLoginDasboard(template_path) {
 }
 
 function show_loader() {
-
     $('#spinnerContainer').show();
     $('#overlay').show();
 }
 
 function hide_loader() {
-
     $('#spinnerContainer').hide();
     $('#overlay').hide();
 }
@@ -91,10 +158,11 @@ function message(type, title, msg, back = false, to = null, hide = null, back_te
             .attr('data-bs-dismiss', 'modal')
             .attr('data-bs-toggle', 'modal')
             .attr('data-bs-target', to)
-
-
-    } else {
-        $('#ModalMessageButtonOk').removeClass('d-none')
+        $('#ModalMessageButtonOk')
+            .removeClass('d-none')
+            .removeAttr('data-bs-toggle')
+            .removeAttr('data-bs-target')
+            .attr('data-bs-dismiss', 'modal')
     }
     if (ok_action == null) {
         $('#ModalMessageButtonOk').attr('data-bs-dismiss', 'modal').removeAttr('action')

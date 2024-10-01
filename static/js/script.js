@@ -1,5 +1,5 @@
 let url = window.location.href
-let api_url = 'http://127.0.0.1:5006'
+let api_url = 'http://localhost:5006'
 // let api_url = 'http://cpppn-api.mtapp.ao'
 let api_key = 'ery4we5633y5iu43b534358d7foueroj58934ipqrie;r457rfd!2w323'
 let api_url_headers

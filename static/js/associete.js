@@ -14,13 +14,17 @@ $(document).ready(function () {
 
     // get associates
     users_get('associate')
-    // inter
-    $('.parent-div').on('mouseenter', '.view_item', function () {
-        $(this).find('.actions').removeClass('d-none')
+
+    socket.on('put_associate', function (datas) {
+        // clear list if no associates
+        if ($('.parent-div').find('.no-results-message').length != -1)
+            $('.parent-div').empty()
+        add_associate(datas.user, true)
     })
 
-    $('.parent-div').on('mouseleave', '.view_item', function () {
-        $(this).find('.actions').addClass('d-none')
+    socket.on('delete_associate', function (datas) {
+        // remove user from list
+        $(`.view_item#${datas.id}`).remove()
     })
 
     // save new associate
@@ -33,7 +37,7 @@ $(document).ready(function () {
         let email = $('#inputUserEmail').val()
         let rank = $('#inputUserRank').val()
         let id = $('.ModalUser').attr('user_id')
-        
+
         if (rank == -1) {
             alert("Selecione a patente")
             return
@@ -45,7 +49,6 @@ $(document).ready(function () {
             phone_number: phone_number,
             email: email,
             type: 'associate',
-            request_type: 'update',
             rank: rank,
             id: id
         }
@@ -59,17 +62,11 @@ $(document).ready(function () {
                 headers: api_url_headers,
                 success: function (response) {
                     if (response.status === 'success') {
-                        // clear list if no associates
-                        if ($('.parent-div').text() == 'Nenhum associado encontrado.')
-                            $('.parent-div').empty()
-
-                        add_associate(response.user)
+                        // add_associate(response.user)
                         message('success', 'Sucesso', 'Associado registado com sucesso.', false, null, '.ModalUser').modal('show')
                         // clean form for new save
                         cleanFormUser()
-                    } else {
-                        message('error', 'Erro!', response.msg, false, null, '.ModalUser').modal('show')
-                    }
+                    } else { message('error', 'Erro!', response.msg, true, '.ModalUser', '.ModalUser').modal('show') }
                 },
                 error: function (xhr, status, error) {
                     message('error', `Erro (${status})`, `${xhr.responseText}`, false, null, '.ModalUser').modal('show')
@@ -103,8 +100,6 @@ $(document).ready(function () {
 
 
     })
-
-
 
     $('.parent-div').on('click', '.view_item', function () {
 
@@ -154,17 +149,13 @@ $(document).ready(function () {
             let id = $('#ModalMessage').attr('action_value');
             $.ajax({
                 url: `${api_url}/user`,
-                type: 'PATCH',
+                type: 'DELETE',
                 contentType: 'application/json',
-                data: JSON.stringify({ id: id, request_type: "delete" }),
+                data: JSON.stringify({ id: id }),
                 headers: api_url_headers,
                 success: function (response) {
                     if (response.status === 'success') {
                         message('success', 'Sucesso', 'Associado Eliminado com sucesso.', false, null, '.ModalUser').modal('show')
-                        // remove user from list
-                        $(`.view_item#${id}`).remove()
-                        // clean form for new save
-                        cleanFormUser()
                     } else {
                         message('error ao Eliminar Associado', 'Erro!', response.msg).modal('show');
                     }
@@ -182,9 +173,23 @@ $(document).ready(function () {
         users_get('associate')
     })
 
+    // inter
+    $('.parent-div').on('mouseenter', '.view_item', function () {
+        $(this).find('.actions').removeClass('d-none')
+    })
+
+    $('.parent-div').on('mouseleave', '.view_item', function () {
+        $(this).find('.actions').addClass('d-none')
+    })
+
 })
 
 function get_user(id) {
+    if (get_loading) {
+        console.log('get false')
+        return
+    }
+    start_view_item_loader(id)
     $.ajax({
         url: `${api_url}/user?id=${id}`,
         type: 'GET',
@@ -200,11 +205,11 @@ function get_user(id) {
                 $('#inputUserEmail').val(user.email)
                 $('#inputUserRank').val(user.rank)
                 $('.ModalUser').modal('show');
-            } else {
-                message('error', 'Erro!', response.msg).modal('show');
-            }
+            } else { message('error', 'Erro!', response.msg).modal('show'); }
+            stop_view_item_loader()
         },
         error: function (xhr, status, error) {
+            stop_view_item_loader()
             server_error(status, error, xhr.responseText);
         }
     });
