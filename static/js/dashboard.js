@@ -88,7 +88,7 @@ $(document).ready(function () {
             url: `${api_url}/log_in_out`,
             type: 'DELETE',
             contentType: 'application/json',
-            headers: { 'X-Access-Key': api_key },
+            headers: { 'X-Access-Key': 'g6df8f68a@%$^$&$^789dfhgdxzf' },
             data: JSON.stringify({ login_token: login_token }),
             success: function(response) {
                 if (response.status === 'success') {

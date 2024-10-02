@@ -5,6 +5,7 @@ socket.on('connect', function () {
     console.log('Connected to the server')
     login_token = localStorage.getItem('login_token')
     current_user = localStorage.getItem('current_user')
+    api_key = localStorage.getItem('api_key')
 
     socket.emit('login_token_send', { token: login_token }, (ack) => {
         if (ack && ack.status === 'success') {

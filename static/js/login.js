@@ -24,12 +24,15 @@ $(document).ready(function () {
             url: `${api_url}/log_in_out`,
             type: 'POST',
             contentType: 'application/json',
-            headers: { 'X-Access-Key': api_key },
+            headers: { 'X-Access-Key': 'g6df8f68a@%$^$&$^789dfhgdxzf' },
             data: JSON.stringify(datas),
             success: function(response) {
                 if (response.status === 'success') {
                     localStorage.setItem('current_user', response.user.id)
                     localStorage.setItem('login_token', response.login_token.token)
+                    api_key = response.api_key
+                    localStorage.setItem('api_key', api_key)
+
                     api_url_headers = { 'X-Access-Key': api_key, 'Login-Token': response.login_token.token }
                     LoadLoginDasboard('dashboard')
                 } else {

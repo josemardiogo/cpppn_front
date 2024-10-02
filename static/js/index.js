@@ -5,7 +5,7 @@ $(document).ready(function () {
     if (storedToken) {
         console.log('Token retrieved:', storedToken);
         // Agora você pode usar o token para fazer outras requisições ou operações
-        api_url_headers = { 'X-Access-Key': api_key, 'Login-Token': storedToken };
+        api_url_headers = { 'X-Access-Key': localStorage.getItem('api_key'), 'Login-Token': storedToken };
     } else {
         console.log('No token found in localStorage.');
     }
