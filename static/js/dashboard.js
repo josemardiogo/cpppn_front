@@ -92,7 +92,6 @@ $(document).ready(function () {
             data: JSON.stringify({ login_token: login_token }),
             success: function(response) {
                 if (response.status === 'success') {
-                    localStorage.removeItem('current_user')
                     localStorage.removeItem('login_token')
                     api_url_headers = { 'X-Access-Key': null, 'Login-Token': null }
                     LoadLoginDasboard('login')

@@ -4,7 +4,6 @@ let api_url = 'http://localhost:5006'
 let api_key
 let api_url_headers
 
-let current_user
 let login_token
 
 let ranks = [

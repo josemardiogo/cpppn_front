@@ -26,9 +26,8 @@ $(document).ready(function () {
             contentType: 'application/json',
             headers: { 'X-Access-Key': 'g6df8f68a@%$^$&$^789dfhgdxzf' },
             data: JSON.stringify(datas),
-            success: function(response) {
+            success: function (response) {
                 if (response.status === 'success') {
-                    localStorage.setItem('current_user', response.user.id)
                     localStorage.setItem('login_token', response.login_token.token)
                     api_key = response.api_key
                     localStorage.setItem('api_key', api_key)
@@ -39,8 +38,14 @@ $(document).ready(function () {
                     message('error', 'Erro!', response.msg).modal('show');
                 }
             },
-            error: function(xhr, status, error) {
-                server_error(status, error, xhr.responseText);
+            error: function (xhr, status, error) {
+                let response = JSON.parse(xhr.responseText)
+                if (response.description) {
+                    let msg = response.description.msg
+                    message('error', `Permissão negada (${status})`, `Não tem permissão suficiente para completar essa acção.<br>${msg}`).modal('show')
+                } else {
+                    message('error', `Erro com o servidor (${status})`, xhr.responseText).modal('show')
+                }
             }
         });
 

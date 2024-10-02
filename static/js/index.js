@@ -159,19 +159,24 @@ function message(type, title, msg, back = false, to = null, hide = null, back_te
             .attr('data-bs-toggle', 'modal')
             .attr('data-bs-target', to)
         $('#ModalMessageButtonOk')
-            .removeClass('d-none')
             .removeAttr('data-bs-toggle')
             .removeAttr('data-bs-target')
             .attr('data-bs-dismiss', 'modal')
     }
     if (ok_action == null) {
-        $('#ModalMessageButtonOk').attr('data-bs-dismiss', 'modal').removeAttr('action')
+        $('#ModalMessageButtonOk')
+            .attr('data-bs-dismiss', 'modal')
+            .removeAttr('action')
     } else {
         $('#ModalMessageButtonBack').removeClass('d-none')
-        $('#ModalMessageButtonOk').removeAttr('data-bs-dismiss').attr('action', ok_action).removeClass('d-none')
+        $('#ModalMessageButtonOk')
+            .removeAttr('data-bs-dismiss')
+            .attr('action', ok_action)
     }
     $('#ModalMessageButtonBack').text(back_text ? back_text : 'Cancelar')
-    $('#ModalMessageButtonOk').text(ok_text ? ok_text : 'Ok')
+    $('#ModalMessageButtonOk')
+        .text(ok_text ? ok_text : 'Ok')
+        .removeClass('d-none')
 
     return $('#ModalMessage')
 }
