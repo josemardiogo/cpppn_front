@@ -1,10 +1,8 @@
-
-
 $(document).ready(function () {
     // load modals
-    if ($('.modals').find(`.associates-modals`).length == 0) {
+    if ($('.modals').find(`.users-modals`).length == 0) {
         $('.modals').append(`
-            <div class="associates-modals">
+            <div class="users-modals">
                 ${$('.this-modals').html()}
             </div>
         `)
@@ -12,11 +10,11 @@ $(document).ready(function () {
     // remove div this modals for no code repeat
     $('.this-modals').remove()
 
-    // get associates
-    users_get('associate')
+    // get users
+    users_get(group_show)
 
     socket.on('put_associate', function (datas) {
-        // clear list if no associates
+        // clear list if no users
         if ($('.parent-div').find('.no-results-message').length != -1)
             $('.parent-div').empty()
         add_associate(datas.user, true)
@@ -73,7 +71,6 @@ $(document).ready(function () {
                 }
             });
         } else {
-
             $.ajax({
                 url: `${api_url}/user`,
                 type: 'PATCH',
@@ -97,20 +94,16 @@ $(document).ready(function () {
                 }
             });
         }
-
-
     })
 
     $('.parent-div').on('click', '.view_item', function () {
-
         let user_id = $(this).attr('id')
         $('.associado').text('Dados do Associado')
         // hide buttn save
         get_user(user_id);
-
     })
 
-    $('#button-new-tran').click(function () {
+    $('#button-new').click(function () {
         cleanFormUser()
         $('.formSaveUserFieldset').removeAttr('disabled')
         $('#btnSaveUser').removeClass('d-none')
@@ -170,25 +163,14 @@ $(document).ready(function () {
     $('#btn-refresh').click(function () {
         // show loader
         loading_effect()
-        users_get('associate')
-    })
-
-    // inter
-    $('.parent-div').on('mouseenter', '.view_item', function () {
-        $(this).find('.actions').removeClass('d-none')
-    })
-
-    $('.parent-div').on('mouseleave', '.view_item', function () {
-        $(this).find('.actions').addClass('d-none')
+        users_get(group_show)
     })
 
 })
 
 function get_user(id) {
-    if (get_loading) {
-        console.log('get false')
+    if (get_loading)
         return
-    }
     start_view_item_loader(id)
     $.ajax({
         url: `${api_url}/user?id=${id}`,
@@ -293,9 +275,9 @@ function add_associate(associate, prepend = false) {
                         </div>
                     </div>
 
-                    <div class="actions container px-4 d-none">
+                    <div class="actions container px-4">
 
-                        <div class="rounded-circle action_delete" title="Eliminar" company_id="${associate.id}">
+                        <div class="rounded-circle action_delete" title="Eliminar" user_id="${associate.id}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-textarea-resizebi d-block" viewBox="0 0 16 16">
                                     <path
@@ -303,7 +285,7 @@ function add_associate(associate, prepend = false) {
                             </svg>
                         </div>
 
-                        <div class="rounded-circle action_edit" title="Editar" company_id="${associate.id}">
+                        <div class="rounded-circle action_edit" title="Editar" user_id="${associate.id}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-textarea-resizebi d-block" viewBox="0 0 16 16">
                                 <path

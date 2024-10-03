@@ -230,12 +230,15 @@
     overflow: auto;
     min-width: 250px;
     max-width: 250px;
+    padding: 0 !important;
 }
+
 .nav-menu::-webkit-scrollbar{
     width: 5px;
     background-color: #ccc;
     padding: 10px;
 }
+
 .nav-menu::-webkit-scrollbar-thumb{
     width: 5px;
     background-color: #003366;
@@ -286,7 +289,7 @@
     background-color: rgb(0, 51, 102,0.1);
 }
 
-.ul-nav .li-li-nav.active {
+.li-li-nav.active {
     /*background-color: var(--bg-secondary) !important;*/
     background-color: rgb(0, 51, 102,0.4);
     color: white;

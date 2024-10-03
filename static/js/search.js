@@ -1,6 +1,11 @@
 $(document).ready(function() {
     $('#searchButton').on('click', function() {
-        $('#searchInput').toggleClass('expand');
+        $('#searchInput').toggleClass('expand').toggleClass('hide')
+        if (!$('#searchInput').hasClass('expand'))
+            $('#searchInput').addClass('hide')
+        else {
+            $('#searchInput').removeClass('hide')
+        }
         $('#searchInput').focus();
     });
 
@@ -11,7 +16,7 @@ $(document).ready(function() {
 
     $(document).on('click', function(event) {
         if (!$(event.target).closest('.search-container').length) {
-            $('#searchInput').removeClass('expand');
+            $('#searchInput').removeClass('expand').addClass('hide');
         }
     });
 });

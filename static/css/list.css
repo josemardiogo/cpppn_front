@@ -18,7 +18,7 @@
     flex-direction: column;
 }
 
-.button-new-tran {
+.button-new {
     position: relative;
 }
 
@@ -34,6 +34,7 @@
     /* border-radius: 20px; */
     min-height: 100px;
     padding: 0 !important;
+    position: relative;
 }
 
 .view_item:hover {
@@ -68,12 +69,18 @@
     display: block;
 }
 
+.view_item:hover .actions{
+    display: flex !important;
+}
+
 .actions {
-    display: flex;
+    display: none;
+    position: absolute;
+    top: 31%;
+    right: 10px;
     align-items: center;
     justify-content: end;
     height: auto;
-    padding-right: 10px;
     float: right;
 }
 

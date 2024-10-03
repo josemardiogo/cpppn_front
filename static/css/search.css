@@ -36,15 +36,21 @@
     align-items: center;
 }
 .search-bar {
-    transition: width 0.4s ease, opacity 0.4s ease;
     width: 0;
     opacity: 0;
     margin-right: 15px; /* Minimal margin between search input and button */
 }
+
 .search-bar.expand {
     width: 200px;
     opacity: 1;
+    transition: width 0.4s ease, opacity 0.4s ease;
 }
+
+.search-bar.hide {
+    transition: width 0.4s ease, opacity 0.4s ease;
+}
+
 .search-btn {
     border-radius: 0;
     z-index: 1; /* Make sure button stays on top of input */

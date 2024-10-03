@@ -10,6 +10,7 @@ $(document).ready(function () {
         }
     }
 
+
     $(".btn-menu").click(function () {
         btn_menu_click()
     })
@@ -63,12 +64,16 @@ $(document).ready(function () {
 
         $('.li-li-nav').removeClass('active')
         $(this).addClass('active')
-
+        
         let show = $(this).attr('show')
+        if ($(this).hasClass('users')) {
+            group_show = show
+            show = 'users'
+        }
 
-        let pt_shows = { 'associates': ' / Associados', 'home': ' / Início' }
+        let pt_shows = $(this).find('.label').text()
 
-        $('.link').text(pt_shows[show]);
+        $('.link').text(`/ ${pt_shows}`);
 
         if (show) {
             show_loader()

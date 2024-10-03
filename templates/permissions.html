@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                <button id="button-new-tran" type="button" class="btn btn-secondary text-white rounded-4 me-3"
+                <button id="button-new" type="button" class="btn btn-secondary text-white rounded-4 me-3"
                     title="Novo transporte">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                         class="bi bi-plus-circle" viewBox="0 0 16 16">
@@ -55,8 +55,7 @@
 
         </div>
 
-
-        <div class="parent-div list-associetes">
+        <div class="parent-div list-permission">
             <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
             <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
             <div class="container-fluid"><div class="row"><div class="view_item col new d-flex align-items-center overflow-hidden m-0 rounded-4 animated-background"><div class="icon mr-3"><div class="circle mx-auto rounded-circle"></div></div><div class="info"><div><div><div class="cell"></div></div><div class="block"><div class="cell"></div></div></div></div></div></div></div>
@@ -75,64 +74,31 @@
 
 <div class="this-modals">
 
-    <div class="modal fade ModalUser" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1"
+    <div class="modal fade ModalPermition" aria-hidden="true" tabindex="-1"
         data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title associado" id="exampleModalToggleLabel"></h5>
+                    <h5 class="modal-title">Permissão</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body p-0">
                     <form id="formSaveUser">
-                        <fieldset class="formSaveUserFieldset">
+                        <fieldset class="formSaveFieldset">
                             <div class="p-3">
-                                <div class="form-group">
-                                    <label for="inputUserName">Nome</label>
-                                    <input type="text" class="form-control" name="inputUserName" id="inputUserName"
+
+                                <div class="form-group mb-3">
+                                    <label for="inputName">Nome</label>
+                                    <input type="text" class="form-control" name="inputName" id="inputName"
                                         placeholder="Nome completo" required>
                                 </div>
-                                <br>
 
-                                <div class="form-group">
-                                    <label for="inputUserNif">Némero do Bilhete</label>
-                                    <input type="text" class="form-control" name="inputUserNif" id="inputUserNif"
-                                        placeholder="Digite o NIF">
-                                </div>
-                                <br>
-
-                                <div class="form-group">
-                                    <label for="inputUserPhonenumber">Contacto</label>
-                                    <input type="tel" class="form-control" maxlength="9" name="inputUserPhonenumber"
-                                        id="inputUserPhonenumber" placeholder="Digite o número de telefone" required>
-                                </div>
-                                <br>
-
-                                <div class="form-group">
-                                    <label for="inputUserEmail">E-mail</label>
-                                    <input type="email" class="form-control clear-input" name="inputUserEmail"
-                                        id="inputUserEmail" placeholder="Endereço de e-mail" required>
-                                </div>
-                                <br>
-
-                                <div class="form-group">
-                                    <label for="inputUserRank">Patente</label>
-                                    <select type="email" class="form-control clear-input" name="inputUserRank"
-                                        id="inputUserRank" placeholder="Escolha a patente" required>
-                                        <option selected value="-1">Selecionar...</option>
-                                        <option value="1">Agente</option>
-                                        <option value="2">Subchefe</option>
-                                        <option value="3">Chefe</option>
-                                        <option value="4">Subinspector</option>
-                                        <option value="5">Inspector</option>
-                                        <option value="6">Superintendente</option>
-                                        <option value="7">Superintendente-Chefe</option>
-                                        <option value="8">Comissário</option>
-                                        <option value="9">Comissário-Chefe</option>
-                                        <option value="10">Comissário-Geral</option>
-                                    </select>
+                                <div class="form-group mb-3">
+                                    <label for="inputDescription">Descrição</label>
+                                    <input type="text" class="form-control" name="inputDescription" id="inputDescription"
+                                        placeholder="Descrição da permissão" required>
                                 </div>
 
                             </div>
@@ -143,7 +109,7 @@
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                 id="btnUserCancel">Cancelar</button>
 
-                            <button type="submit" id="btnSaveUser" class="btn btn-primary save">Salvar</button>
+                            <button type="submit" id="btnSavePermission" class="btn btn-primary save">Salvar</button>
 
                         </div>
 
@@ -156,5 +122,5 @@
 
 </div>
 
-<script src="/static/js/associete.js"></script>
+<script src="/static/js/permissions.js"></script>
 <script src="/static/js/search.js"></script>
