@@ -1,8 +1,6 @@
-from flask import Flask, jsonify, render_template
-from api import login
+from flask import Flask, render_template
 
 app = Flask(__name__)
-app.secret_key = '434BHG@.cfre,JK'
 
 
 @app.route('/')

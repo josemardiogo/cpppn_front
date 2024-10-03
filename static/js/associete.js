@@ -219,12 +219,12 @@ function get_user(id) {
 }
 
 
-function users_get(type) {
+function users_get(group) {
     $.ajax({
         url: `${api_url}/user`,
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({ type: type }),
+        data: JSON.stringify({ group: group }),
         headers: api_url_headers,
         success: function (response) {
             if (response.status === 'success') {
@@ -285,7 +285,7 @@ function add_associate(associate, prepend = false) {
                             <div class="block2">
 
                                 <div class="text-truncate company-email">
-                                    ${ranks.find(option => option.value == associate.rank).label}
+                                    {ranks.find(option => option.value == associate.rank).label}
                                 </div>
 
                             </div>
