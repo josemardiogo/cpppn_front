@@ -1,6 +1,18 @@
-$(document).ready(function () {
+// let api_url = 'http://cpppn-api.mtapp.ao'
+// let api_url = 'http://127.0.0.1:5006'
+let api_url = 'http://192.168.137.170:5006'
 
-    hide_loader();
+let storedToken = localStorage.getItem('login_token');
+if (storedToken) {
+    window.location.href = '/'
+}
+
+$(document).ready(function () {
+    
+    setTimeout(function () {
+        $('#spinnerContainer').hide();
+        $('#overlay').hide();
+    }, 200)
 
     $('#formLogin').submit(function (event) {
         event.preventDefault()
@@ -9,17 +21,7 @@ $(document).ready(function () {
             email: $('#inputEmail').val(),
             password: $('#inputPassword').val()
         }
-
-        /*
-        # =================================================================================================
-        @app.route('/login', methods=['POST'])
-        def login_route():
-            
-            datas = request.get_json()
-            res = login(datas['email'], datas['password'])
-            session['login_token'] = res['login_token']
-            return jsonify(res)
-        */
+        
         $.ajax({
             url: `${api_url}/log_in_out`,
             type: 'POST',
@@ -33,7 +35,7 @@ $(document).ready(function () {
                     localStorage.setItem('api_key', api_key)
 
                     api_url_headers = { 'X-Access-Key': api_key, 'Login-Token': response.login_token.token }
-                    LoadLoginDasboard('dashboard')
+                    window.location.href = '/'
                 } else {
                     message('error', 'Erro!', response.msg).modal('show');
                 }

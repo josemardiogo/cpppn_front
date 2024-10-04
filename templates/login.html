@@ -1,26 +1,100 @@
-<link href="/static/css/login.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="fundo">
-    <div class="login-container form-signin w-100 m-auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPPPN</title>
 
-        <form id="formLogin">
-            <h3 class="login-title">Iniciar sessão</h3>
-    
-            <div class="mb-3">
-                <label for="inputEmail" class="form-label">Endereço e-mail</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Digitar endereço e-mail" required>
-            </div>
-    
-            <div class="mb-3">
-                <label for="inputPassword" class="form-label">Palavra-passe</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Digitar palavra-passe" required>
-            </div>
-    
-            <button type="submit" class="btn btn-primary w-100" id="btn_login">Entrar</button>
-            <!-- <span>If you do not have an account, we gonna create a new one for you.</span> -->
-        </form>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"> -->
+    <link href="/static/bs/bootstrap-5.2.3.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/login.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="" id="spinnerContainer">
+        <div class="spinner-custom"></div>
+    </div>
+    <div class="" id="overlay"></div>
+
+    <div class="fundo">
+        <div class="login-container form-signin w-100 m-auto">
+
+            <form id="formLogin">
+                <h3 class="login-title">Iniciar sessão</h3>
+
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Endereço e-mail</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Digitar endereço e-mail"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Palavra-passe</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Digitar palavra-passe"
+                        required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100" id="btn_login">Entrar</button>
+                <!-- <span>If you do not have an account, we gonna create a new one for you.</span> -->
+            </form>
+
+        </div>
 
     </div>
-    
-</div>
-<script src="/static/js/login.js"></script>
+
+
+    <div class="modal fade" id="ModalMessage" aria-hidden="true" aria-labelledby="ModalMessageLabelTitle" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <div class="btn-back rounded-circle" id="ModalMessageButtonBackTop" data-bs-dismiss="modal"
+                        data-bs-toggle="modal" data-bs-target="#ModalStatus">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+                        </svg>
+                    </div>
+
+                    <div id="ModalMessageLabelTitle" class="container d-flex align-items-center justify-content-center">
+                        <h5 class="modal-title">Title</h5>
+                    </div>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body" id="ModalMessageLabelInfo">
+                    Message
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-secondary" id="ModalMessageButtonBack" data-bs-target="#ModalRegister"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Editar</button>
+
+                    <button class="btn btn-primary d-none" id="ModalMessageButtonOk" data-bs-dismiss="modal">OK</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery -->
+    <script src="/static/jquery/jquery-3.5.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/static/bs/bootstrap.bundle.min.js"></script>
+    <!-- My js -->
+    <!-- <script src="/static/js/script.js"></script> -->
+    <script src="/static/js/login.js"></script>
+
+</body>
+
+</html>

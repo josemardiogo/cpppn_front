@@ -4,12 +4,16 @@ app = Flask(__name__)
 
 
 @app.route('/')
-@app.route('/login')
-@app.route('/dashboard')
-@app.route('/dashboard/home')
-@app.route('/dashboard/associates')
+@app.route('/home')
+@app.route('/groups')
+@app.route('/users')
 def index_route():
     return render_template('index.html')
+
+
+@app.route('/login')
+def login_route():
+    return render_template('login.html')
 
 
 # =================================================================================================

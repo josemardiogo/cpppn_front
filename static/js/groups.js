@@ -1,12 +1,14 @@
 $(document).ready(function () {
     // load modals
-    if ($('.modals').find(`.groups-modals`).length == 0) {
-        $('.modals').append(`
-            <div class="groups-modals">
-                ${$('.this-modals').html()}
-            </div>
-        `)
-    }
+    if ($('.modals').find(`.groups-modals`).length > 0)
+        $('.modals').find(`.groups-modals`).remove()
+
+    $('.modals').append(`
+        <div class="groups-modals">
+            ${$('.this-modals').html()}
+        </div>
+    `)
+
     // remove div this modals for no code repeat
     $('.this-modals').remove()
 
@@ -27,7 +29,6 @@ $(document).ready(function () {
                     })
                     // verify list lengh
                     if (response.datas.length == 0) {
-                        alert('no datas to show')
                         $('.parent-div').html(`<div class="no-results-message"><h4>Nenhuma permissão encontrada.</h4></div>`)
                     }
                 } else { message('error', 'Erro!', response.msg).modal('show') }
@@ -77,13 +78,13 @@ $(document).ready(function () {
 
         // hide buttn save
         $('#btnSave').addClass('d-none')
-        $('.formSaveFieldset').attr('disabled', true)
+        $('.fieldsetFormGroup').attr('disabled', true)
     })
 
 
     $('#button-new').click(function () {
         cleanFormGroup()
-        $('.formSaveFieldset').removeAttr('disabled')
+        $('.fieldsetFormGroup').removeAttr('disabled')
         $('#btnSave').removeClass('d-none')
 
         $('.ModalGroup')
@@ -96,13 +97,12 @@ $(document).ready(function () {
 
     socket.on('group_put', function (datas) {
         // clear list if no users
-        // if ($('.parent-div').find('.no-results-message').length != -1)
-        //     $('.parent-div').empty()
+        if ($('.parent-div').find('.no-results-message').length > 0)
+            $('.parent-div').empty()
         add_group(datas.group, true)
     })
 
     socket.on('group_patch', function (datas) {
-        //add_associate(response.user)
         $(`.view_item#${datas.group.id}`).remove()
         add_group(response.group, true)
         alert('group_patch')
@@ -115,13 +115,16 @@ $(document).ready(function () {
 
 
     // save new associate
-    $('#formSaveUser').submit(function (event) {
+    $('#btnSaveGroup').click(function (event) {
+        event.stopPropagation()
         event.preventDefault()
+        alert(1)
+        return
 
         let label = $('#inputLabel').val()
         let name = $('#inputName').val()
         let description = $('#inputDescription').val()
-        let id = $('.ModalGropu').attr('group_id')
+        let id = $('.ModalGroup').attr('group_id')
 
         let datas = {
             label: label,
@@ -139,11 +142,11 @@ $(document).ready(function () {
                 headers: api_url_headers,
                 success: function (response) {
                     if (response.status === 'success') {
-                        // add_associate(response.user)
                         message('success', 'Sucesso', 'Grupo registado com sucesso.', false, null, '.ModalGroup').modal('show')
                         // clean form for new save
                         cleanFormGroup()
                     } else { message('error', 'Erro!', response.msg, true, '.ModalGroup', '.ModalGroup').modal('show') }
+                    alert(2)
                 },
                 error: function (xhr, status, error) {
                     message('error', `Erro (${status})`, `${xhr.responseText}`, false, null, '.ModalGroup').modal('show')
@@ -182,7 +185,7 @@ $(document).ready(function () {
             .text('Editar Grupo')
 
         $('#btnSave').removeClass('d-none')
-        $('.formSaveFieldset').removeAttr('disabled')
+        $('.fieldsetFormGroup').removeAttr('disabled')
 
         group_get(id)
     })
@@ -202,6 +205,8 @@ $(document).ready(function () {
     $('#ModalMessageButtonOk').click(function () {
         if ($(this).attr('action') == 'delete_group') {
             let id = $('#ModalMessage').attr('action_value');
+            alert(id)
+            return
             $.ajax({
                 url: `${api_url}/group`,
                 type: 'DELETE',
@@ -209,7 +214,7 @@ $(document).ready(function () {
                 data: JSON.stringify({ id: id }),
                 headers: api_url_headers,
                 success: function (response) {
-                    if (response.status === 'success') {
+                    if (response.status == 'success') {
                         message('success', 'Sucesso', 'Grupo Eliminado com sucesso.', false, null, '.ModalGroup').modal('show')
                     } else {
                         message('error', 'Erro!', response.msg).modal('show');
@@ -219,7 +224,14 @@ $(document).ready(function () {
                     server_error(status, error, xhr.responseText);
                 }
             });
+            $(this).removeAttr('action').removeAttr('action_value')
         }
+    })
+
+    $('#btn-refresh').click(function () {
+        // show loader
+        loading_effect()
+        group_post()
     })
 
 })
