@@ -202,6 +202,7 @@ function get_user(id) {
 
 
 function users_get(group) {
+    console.log(group)
     $.ajax({
         url: `${api_url}/user`,
         type: 'POST',

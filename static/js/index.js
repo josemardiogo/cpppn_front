@@ -60,6 +60,7 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.status === 'success') {
                     localStorage.removeItem('login_token')
+                    localStorage.removeItem('api_key')
                     api_url_headers = { 'X-Access-Key': null, 'Login-Token': null }
                     window.location.href = '/login'
                 } else {
@@ -75,18 +76,40 @@ $(document).ready(function () {
 })
 
 function load_window(show) {
+    show_loader()
     let show_label = findLabelByShow(menuItems, show)
-    let show_route = show_label[0];
-    let label = show_label[1];
+    let show_route
+    let label
+    if (show_label) {
+        show_route = show_label[0];
+        label = show_label[1];
+        // alert(show)
+        if (['users'].includes(show_route)) {
+            group_show = show
+        }
+    } else {
+        show_route = 'home'
+        label = 'Início'
+    }
     $('.link').text(`/ ${label}`);
     history.pushState(null, '', `/${show_route}`)
-    $('.show-content').load(`/render_template/${show_route}`, function (response, status, xhr) {
-        if (status == 'success') {
-        } else {
-            alert('404')
-        }
-        // setTimeout(function () {
+    if (show_route in templates_loaded) {
+        // alert('not loaded')
+        $('.show-content').html(templates_loaded[show_route])
         hide_loader()
-        // }, 100)
-    })
+    } else {
+        // alert('loaded')
+        // $('.show-content').load(`/render_template/${show_route}`, function (response, status, xhr) {
+        $('.show-content').load(`/templates/${show_route}.html`, function (response, status, xhr) {
+            if (status == 'success') {
+                templates_loaded[show_route] = response
+
+            } else {
+                alert('404')
+            }
+            // setTimeout(function () {
+            hide_loader()
+            // }, 100)
+        })
+    }
 }

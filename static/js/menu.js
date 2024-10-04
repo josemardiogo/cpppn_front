@@ -1,4 +1,4 @@
-const menuItems = [
+var menuItems = [
     { icon: "bi-house", label: "Início", show: "home", type: "single", addClass: 'active' },
     { icon: "bi-people", label: "Grupos", show: "groups", type: "single" },
     {
@@ -123,7 +123,6 @@ $(document).ready(function () {
         let show = $(this).attr('show')
 
         if (show) {
-            show_loader()
             load_window(show);
         }
     })
@@ -136,11 +135,8 @@ function findLabelByShow(menuItems, show) {
         if (item.show === show) {
             if (item.addClass && item.addClass !== 'active') {
                 show = item.addClass
-                alert(show)
             }
             let res = [show, item.label]
-            console.log(res);
-            alert(1)
             return res;
         }
 
